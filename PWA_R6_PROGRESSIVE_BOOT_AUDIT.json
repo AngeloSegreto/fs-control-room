@@ -1,0 +1,26 @@
+{
+  "engine_build_preserved": "V4.0.23.1",
+  "pwa_packaging_build": "R6-PROGRESSIVE-BOOT",
+  "registry_records_preserved": 492,
+  "player_cards_total": 492,
+  "player_cards_inline_at_boot": 28,
+  "player_cards_deferred": 464,
+  "detail_records_externalized": 492,
+  "engine_logic_changed": false,
+  "transaction_contract_changed": false,
+  "source_index_bytes": 1378996,
+  "r6_index_bytes": 300631,
+  "player_rows_json_bytes": 290932,
+  "player_details_json_bytes": 809470,
+  "source_index_git_blob_sha": "372c89897ca7c853cf68bd991e3299e7ebb7147c",
+  "r6_index_git_blob_sha": "b3913b47f3ebf3e7dc18c92b2bf1abc5f4385ea6",
+  "optimizations": [
+    "28 player cards inline for immediate first paint",
+    "464 remaining player cards streamed progressively from player-rows.json",
+    "492 player detail payloads removed from initial HTML and loaded from player-details.json",
+    "existing 492 lightweight registry stubs preserved for auction-engine compatibility",
+    "role filters remain CSS-native as rows arrive",
+    "sorting waits for full list when requested, preserving exact rank order",
+    "service worker remains non-blocking relative to app shell"
+  ]
+}

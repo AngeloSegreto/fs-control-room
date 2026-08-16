@@ -1,10 +1,12 @@
-const CACHE_NAME = "fs-control-room-v4.0.23-pwa-r6-lazy-detail-20260816";
+const CACHE_NAME = "fs-control-room-v4.0.23-pwa-r7-progressive-boot-20260816";
 const CORE = [
   "./manifest.webmanifest",
   "./version.json",
   "./icon-192.png",
   "./icon-512.png",
-  "./apple-touch-icon.png"
+  "./apple-touch-icon.png",
+  "./player-rows.json",
+  "./player-details.json"
 ];
 
 self.addEventListener("install", event => {

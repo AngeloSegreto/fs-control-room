@@ -1,0 +1,12 @@
+{
+  "package": "FS CONTROL ROOM V4.0",
+  "engine": "V4.0.23",
+  "runtime_container": "Safari PWA",
+  "pwa_build": "P0.4-R1/R2/R3",
+  "cache_name": "fs-control-room-v4.0.23-pwa-r1-20260816",
+  "as_of": "2026-08-16",
+  "engine_logic_changed": false,
+  "registry_changed": false,
+  "prices_changed": false,
+  "offline_strategy": "precache + cache-first same-origin + navigation fallback"
+}

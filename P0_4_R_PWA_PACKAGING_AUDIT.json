@@ -1,0 +1,22 @@
+{
+  "build": "P0.4-R PWA PACKAGING",
+  "engine": "V4.0.23",
+  "source_html": "FS_Control_Room_iPhone_V4_0_23_1_IOS_RUNTIME_COMPATIBILITY_HOTFIX_16AGO2026(1).html",
+  "engine_logic_changed": false,
+  "registry_changed": false,
+  "prices_changed": false,
+  "index_js_syntax": "PASS",
+  "service_worker_js_syntax": "PASS",
+  "manifest_present": true,
+  "service_worker_present": true,
+  "icons_present": true,
+  "missing_precache_assets": [],
+  "https_required": true,
+  "physical_smoke_status": "PENDING_PHYSICAL_IPHONE",
+  "sha256": {
+    "index.html": "1f3ae2cb40f1627e5e86434b2f4286eaeb9d41c1a91df9dd1ebaed5b8a72e2a3",
+    "manifest.webmanifest": "da625d8468bb700af24de41531db9359690ed3c3508fb58669b774743440b72b",
+    "sw.js": "52730af73814d7570a269754e9e847b1eb8601292e1805840a7a9a2f0fed01f2",
+    "version.json": "c2c25083aaadcf58b4990d6d6c37bd8d5db099cc1d062681e044d220a606ce8b"
+  }
+}

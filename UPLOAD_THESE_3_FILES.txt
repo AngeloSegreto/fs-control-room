@@ -1,0 +1,7 @@
+Sostituisci nella ROOT del repository:
+- index.html
+- manifest.webmanifest
+- sw.js
+
+Non spostare le icone: questa hotfix usa icon-192.png, icon-512.png e apple-touch-icon.png nella ROOT.
+Dopo il commit: chiudi Safari, riapri l'URL con ?v=2 per forzare il refresh.

@@ -1,12 +1,12 @@
-const CACHE_NAME = "fs-control-room-v4.0.23-pwa-r1-20260816";
+const CACHE_NAME = "fs-control-room-v4.0.23-pwa-r2-rootfix-20260816";
 const PRECACHE = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
   "./version.json",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/apple-touch-icon.png"
+  "./icon-192.png",
+  "./icon-512.png",
+  "./apple-touch-icon.png"
 ];
 
 self.addEventListener("install", event => {
@@ -20,7 +20,10 @@ self.addEventListener("install", event => {
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME && k.startsWith("fs-control-room-")).map(k => caches.delete(k))))
+      .then(keys => Promise.all(
+        keys.filter(k => k !== CACHE_NAME && k.startsWith("fs-control-room-"))
+            .map(k => caches.delete(k))
+      ))
       .then(() => self.clients.claim())
   );
 });
@@ -32,7 +35,9 @@ self.addEventListener("fetch", event => {
 
   if (event.request.mode === "navigate") {
     event.respondWith(
-      caches.match("./index.html").then(cached => cached || fetch(event.request).catch(() => caches.match("./index.html")))
+      caches.match("./index.html")
+        .then(cached => cached || fetch(event.request)
+          .catch(() => caches.match("./index.html")))
     );
     return;
   }

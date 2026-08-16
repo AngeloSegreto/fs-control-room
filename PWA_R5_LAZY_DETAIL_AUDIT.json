@@ -1,0 +1,21 @@
+{
+  "engine_build_preserved": "V4.0.23.1",
+  "pwa_packaging_build": "R5-LAZY-DETAIL",
+  "registry_records_preserved": 492,
+  "main_player_cards": 492,
+  "heavy_player_detail_sections_before": 492,
+  "heavy_player_detail_sections_after": 0,
+  "reusable_detail_modal_after": 1,
+  "detail_payload_records": 492,
+  "engine_logic_changed": false,
+  "transaction_contract_changed": false,
+  "optimization": [
+    "single 492-row list",
+    "492 detail panels removed from startup DOM",
+    "492 lightweight registry stubs preserved for engine compatibility",
+    "one reusable lazy detail modal",
+    "non-blocking service worker bootstrap"
+  ],
+  "source_size_bytes": 1909713,
+  "optimized_size_bytes": 1378996
+}

@@ -1,4 +1,4 @@
-const CACHE_NAME = "fs-control-room-v4.0.23-pwa-r4-domfast-20260816";
+const CACHE_NAME = "fs-control-room-v4.0.23-pwa-r5-combined-20260816";
 const CORE = [
   "./manifest.webmanifest",
   "./version.json",

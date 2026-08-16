@@ -148,16 +148,14 @@
 .v4231-actions button{border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);padding:11px;font-weight:900}
 @media(max-width:430px){.v4231-grid{grid-template-columns:1fr 1fr}.v4231-actions{grid-template-columns:1fr}}
 </style><link href="./manifest.webmanifest" rel="manifest"/><link href="./apple-touch-icon.png" rel="apple-touch-icon"/><meta content="#0b2633" name="theme-color"/><meta content="yes" name="apple-mobile-web-app-capable"/><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/><meta content="FS GOLD" name="apple-mobile-web-app-title"/><meta content="yes" name="mobile-web-app-capable"/>
-<style id="fs-pwa-dom-performance-v4">
-/* PWA performance: un solo listone nel DOM, rendering differito delle righe fuori viewport. */
+<style id="fs-pwa-dom-performance-v5">
+/* Safari-safe DOM optimization:
+   - un solo listone da 492 righe
+   - niente content-visibility sulle card (evita card vuote su iOS)
+*/
 #score{display:block!important;padding:0 14px}
-.prow{
-  content-visibility:auto;
-  contain-intrinsic-size:118px;
-  contain:layout style paint;
-}
-.detail:not(:target){content-visibility:hidden}
-.names a{content-visibility:auto;contain-intrinsic-size:42px}
+.prow{contain:layout style}
+.detail:not(:target){display:none!important}
 </style>
 </head><body>
 <input checked="" class="fs-radio" id="rf-all" name="role" type="radio"/><input class="fs-radio" id="rf-P" name="role" type="radio"/><input class="fs-radio" id="rf-D" name="role" type="radio"/><input class="fs-radio" id="rf-C" name="role" type="radio"/><input class="fs-radio" id="rf-A" name="role" type="radio"/>
@@ -6094,39 +6092,83 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 <script id="fs-pwa-bootstrap">
 (function(){
   "use strict";
-  window.FS_PWA = { build:"V4.0.23-PWA-R1", sw:"UNKNOWN", standalone:false, online:navigator.onLine };
+  window.FS_PWA = {
+    build:"V4.0.23.1-PWA-R4-DOMFAST-COMBINED",
+    sw:"PENDING",
+    standalone:false,
+    online:navigator.onLine
+  };
+
   function standalone(){
-    return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+    return window.matchMedia("(display-mode: standalone)").matches ||
+           window.navigator.standalone === true;
   }
-  function mark(msg, ok){
-    window.FS_PWA.standalone = standalone();
-    window.FS_PWA.status = msg;
+
+  function ensureBadge(){
     var el=document.getElementById("fs-pwa-status");
-    if(el){el.textContent=msg;el.style.color=ok?"var(--green)":"var(--gold)";}
-  }
-  window.addEventListener("online", function(){window.FS_PWA.online=true;});
-  window.addEventListener("offline", function(){window.FS_PWA.online=false;});
-  window.addEventListener("DOMContentLoaded", function(){
+    if(el) return el;
     var live=document.querySelector(".livebar");
-    if(live && !document.getElementById("fs-pwa-status")){
-      var s=document.createElement("span");
-      s.id="fs-pwa-status";
-      s.style.cssText="grid-column:1/-1;text-align:center;font-size:9px;font-weight:900;color:var(--gold);padding:6px";
-      s.textContent="PWA BOOT…";
-      live.appendChild(s);
+    if(!live) return null;
+    var s=document.createElement("span");
+    s.id="fs-pwa-status";
+    s.style.cssText="grid-column:1/-1;text-align:center;font-size:9px;font-weight:900;color:var(--gold);padding:6px";
+    live.appendChild(s);
+    return s;
+  }
+
+  function mark(msg,color){
+    window.FS_PWA.standalone=standalone();
+    window.FS_PWA.status=msg;
+    var el=ensureBadge();
+    if(el){
+      el.textContent=msg;
+      el.style.color=color||"var(--gold)";
     }
+  }
+
+  window.addEventListener("online",function(){window.FS_PWA.online=true;});
+  window.addEventListener("offline",function(){window.FS_PWA.online=false;});
+
+  function start(){
+    /* L'app è già pronta: il Service Worker lavora solo in background. */
+    mark("APP READY · DOM FAST · SW SYNC…","var(--gold)");
+
     if(!("serviceWorker" in navigator)){
-      mark("PWA: SERVICE WORKER NON SUPPORTATO", false);
+      window.FS_PWA.sw="UNSUPPORTED";
+      mark("APP READY · SW NON SUPPORTATO","var(--gold)");
       return;
     }
-    navigator.serviceWorker.register("./sw.js",{scope:"./"}).then(function(reg){
+
+    var completed=false;
+    var timer=setTimeout(function(){
+      if(!completed) mark("APP READY · SW IN BACKGROUND","var(--gold)");
+    },900);
+
+    navigator.serviceWorker.register("./sw.js",{
+      scope:"./",
+      updateViaCache:"none"
+    }).then(function(reg){
+      completed=true;
+      clearTimeout(timer);
       window.FS_PWA.sw="REGISTERED";
-      mark("PWA READY · "+(standalone()?"STANDALONE":"SAFARI"), true);
-      reg.update().catch(function(){});
+      mark("PWA READY · "+(standalone()?"STANDALONE":"SAFARI"),"var(--green)");
+
+      setTimeout(function(){
+        try{reg.update().catch(function(){});}catch(e){}
+      },1200);
     }).catch(function(err){
+      completed=true;
+      clearTimeout(timer);
       window.FS_PWA.sw="FAILED";
-      mark("PWA SW FAIL · "+(err && err.message ? err.message : "registration"), false);
+      mark("APP READY · SW RETRY","var(--gold)");
+      console.warn("[FS PWA] SW registration deferred:",err);
     });
-  },{once:true});
+  }
+
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded",start,{once:true});
+  }else{
+    start();
+  }
 })();
 </script></body></html>

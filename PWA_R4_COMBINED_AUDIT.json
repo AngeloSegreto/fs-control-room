@@ -1,0 +1,11 @@
+{
+  "engine_build_preserved": "V4.0.23.1",
+  "pwa_packaging_build": "R4-DOMFAST-COMBINED",
+  "registry_records_preserved": 492,
+  "player_cards_in_main_list": 492,
+  "old_pwa_boot_present": false,
+  "new_ready_label_present": true,
+  "content_visibility_on_player_cards": false,
+  "engine_logic_changed": false,
+  "purpose": "Combine single-list DOM optimization with non-blocking Service Worker bootstrap and Safari-safe row rendering"
+}

@@ -11936,39 +11936,76 @@ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",
 </script><script id="fs-v4231-runtime-audit" type="application/json">{"build": "V4.0.23.1", "purpose": "P0.4 Physical iPhone Smoke Test hotfix", "engine_logic_changed": false, "registry_changed": false, "prices_changed": false, "features_added": ["runtime capability panel", "localStorage write/read/delete self-test", "navigator.share fallback", "Blob download fallback", "text export fallback modal", "visible feedback for recalc", "clear audit without confirm dialog"], "p0_4_status": "RETEST_REQUIRED_ON_PHYSICAL_IPHONE"}</script><script id="fs-pwa-bootstrap">
 (function(){
   "use strict";
-  window.FS_PWA = { build:"V4.0.23-PWA-R1", sw:"UNKNOWN", standalone:false, online:navigator.onLine };
+  window.FS_PWA = { build:"V4.0.23-PWA-R2-FASTBOOT", sw:"PENDING", standalone:false, online:navigator.onLine };
+
   function standalone(){
     return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
   }
-  function mark(msg, ok){
+
+  function ensureBadge(){
+    var el=document.getElementById("fs-pwa-status");
+    if(el) return el;
+    var live=document.querySelector(".livebar");
+    if(!live) return null;
+    var s=document.createElement("span");
+    s.id="fs-pwa-status";
+    s.style.cssText="grid-column:1/-1;text-align:center;font-size:9px;font-weight:900;color:var(--gold);padding:6px";
+    live.appendChild(s);
+    return s;
+  }
+
+  function mark(msg, color){
     window.FS_PWA.standalone = standalone();
     window.FS_PWA.status = msg;
-    var el=document.getElementById("fs-pwa-status");
-    if(el){el.textContent=msg;el.style.color=ok?"var(--green)":"var(--gold)";}
-  }
-  window.addEventListener("online", function(){window.FS_PWA.online=true;});
-  window.addEventListener("offline", function(){window.FS_PWA.online=false;});
-  window.addEventListener("DOMContentLoaded", function(){
-    var live=document.querySelector(".livebar");
-    if(live && !document.getElementById("fs-pwa-status")){
-      var s=document.createElement("span");
-      s.id="fs-pwa-status";
-      s.style.cssText="grid-column:1/-1;text-align:center;font-size:9px;font-weight:900;color:var(--gold);padding:6px";
-      s.textContent="PWA BOOT…";
-      live.appendChild(s);
+    var el=ensureBadge();
+    if(el){
+      el.textContent=msg;
+      el.style.color=color || "var(--gold)";
     }
+  }
+
+  window.addEventListener("online", function(){ window.FS_PWA.online=true; });
+  window.addEventListener("offline", function(){ window.FS_PWA.online=false; });
+
+  function start(){
+    // La Control Room è già utilizzabile: il Service Worker non deve bloccare il rendering.
+    mark("APP READY · SW SYNC…","var(--gold)");
+
     if(!("serviceWorker" in navigator)){
-      mark("PWA: SERVICE WORKER NON SUPPORTATO", false);
+      window.FS_PWA.sw="UNSUPPORTED";
+      mark("APP READY · SW NON SUPPORTATO","var(--gold)");
       return;
     }
-    navigator.serviceWorker.register("./sw.js",{scope:"./"}).then(function(reg){
+
+    var settled=false;
+    var timer=setTimeout(function(){
+      if(!settled){
+        mark("APP READY · SW IN BACKGROUND","var(--gold)");
+      }
+    },1200);
+
+    navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"}).then(function(reg){
+      settled=true; clearTimeout(timer);
       window.FS_PWA.sw="REGISTERED";
-      mark("PWA READY · "+(standalone()?"STANDALONE":"SAFARI"), true);
-      reg.update().catch(function(){});
+      mark("PWA READY · "+(standalone()?"STANDALONE":"SAFARI"),"var(--green)");
+
+      // Aggiornamento non bloccante.
+      setTimeout(function(){
+        try{ reg.update().catch(function(){}); }catch(e){}
+      },1500);
     }).catch(function(err){
+      settled=true; clearTimeout(timer);
       window.FS_PWA.sw="FAILED";
-      mark("PWA SW FAIL · "+(err && err.message ? err.message : "registration"), false);
+      mark("APP READY · SW RETRY","var(--gold)");
+      console.warn("[FS PWA] Service Worker registration deferred:",err);
     });
-  },{once:true});
+  }
+
+  // Script è a fine body: avvio subito, senza attendere ulteriori eventi.
+  if(document.readyState==="loading"){
+    document.addEventListener("DOMContentLoaded", start, {once:true});
+  }else{
+    start();
+  }
 })();
 </script></body></html>

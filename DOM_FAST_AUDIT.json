@@ -1,0 +1,16 @@
+{
+  "source_size_bytes": 2801246,
+  "optimized_size_bytes": 1909090,
+  "sort_lists_before": 5,
+  "sort_lists_after": 1,
+  "player_cards_before": 2460,
+  "player_cards_after": 492,
+  "duplicate_player_cards_removed": 1968,
+  "registry_records_preserved": 492,
+  "engine_data_changed": false,
+  "optimization": [
+    "single DOM list + rank-based client sorting",
+    "content-visibility",
+    "non-blocking SW fastboot"
+  ]
+}

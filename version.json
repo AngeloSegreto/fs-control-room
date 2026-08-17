@@ -1,24 +1,11 @@
 {
-  "package": "FS CONTROL ROOM V4.0",
-  "ui_build": "V4.0.24.3.1",
+  "ui": "V4.0.24.3.2",
+  "pwa": "R7.3.2",
   "engine": "V4.0.23.1 LOCK",
-  "runtime_container": "Safari PWA",
-  "pwa_build": "R7.3 + FS HARNESS R1",
-  "harness": "FS_HARNESS_V1.0",
-  "cache_name": "fs-control-room-v4.0.24.3.1-pwa-r7.3-harness-r1-20260817",
-  "as_of": "2026-08-17",
-  "index_mode": "FULL_STANDALONE",
-  "registry": 492,
-  "embedded_list_rows": 492,
-  "embedded_player_details": 492,
+  "hotfix": "IOS_LISTONE_RENDER",
   "engine_logic_changed": false,
   "registry_changed": false,
   "prices_changed": false,
-  "external_player_payload_required": false,
-  "offline_strategy": "network-first navigation + warmed full-index fallback",
-  "release_status": "BLOCKED_PENDING_GOLD_LOCK",
-  "blocking_acceptance_gates": [
-    "PHYSICAL_IPHONE_SAFARI_ACCEPTANCE",
-    "CURRENT_ENGINE_CERTIFIED_TEMPORAL_REAL_AUCTION_REPLAY"
-  ]
+  "players": 492,
+  "as_of": "2026-08-17"
 }

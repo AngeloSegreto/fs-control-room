@@ -1,4 +1,4 @@
-const CACHE_NAME = "fs-control-room-v4.0.24.3.1-pwa-r7.3-harness-r1-20260817";
+const CACHE_NAME = "fs-control-room-v4.0.24.3.2-pwa-r7.3.2-ios-listone-render-20260817";
 const CORE = [
   "./manifest.webmanifest",
   "./version.json",

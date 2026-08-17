@@ -1,0 +1,16 @@
+{
+  "build": "V4.0.24.3.2",
+  "engine": "V4.0.23.1 LOCK",
+  "rows": 492,
+  "details": 492,
+  "purchase_boxes": 492,
+  "engine_logic_changed": false,
+  "registry_changed": false,
+  "prices_changed": false,
+  "ios_render_hotfix": true,
+  "dom_ids": 669,
+  "unique_dom_ids": 669,
+  "duplicate_dom_ids": 0,
+  "hash_links": 1989,
+  "missing_hash_targets": 0
+}

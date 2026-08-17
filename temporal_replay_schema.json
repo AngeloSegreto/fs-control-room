@@ -1,0 +1,31 @@
+{
+  "schema": "FS_TEMPORAL_REPLAY_V1",
+  "engine_required": "V4.0.23.1",
+  "observations": [
+    {
+      "index": 0,
+      "timestamp": null,
+      "player_id": "",
+      "player_name": "",
+      "role": "P|D|C|A",
+      "team": "",
+      "observed_price": 0,
+      "buyer": "ME|R1|R2|R3|R4|R5|R6|R7|R8|R9",
+      "source_evidence": "",
+      "pre_state_hash": "",
+      "exact_max": null,
+      "decision": "BUY|WAIT|PASS|FORCED_BUY",
+      "post_state_hash": ""
+    }
+  ],
+  "blocking_checks": [
+    "NO_FUTURE_INFORMATION",
+    "REPRODUCIBLE_DECISION",
+    "BUDGET_CONSERVATION",
+    "SLOT_CONSERVATION",
+    "UNIQUE_OWNERSHIP",
+    "EXACT_MAX_DISCIPLINE",
+    "PRE_POST_HASH_CHAIN",
+    "END_ROSTER_FINANCEABLE"
+  ]
+}

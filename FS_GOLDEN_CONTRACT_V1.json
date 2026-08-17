@@ -1,0 +1,68 @@
+{
+  "contract": "FS_GOLDEN_CONTRACT_V1",
+  "target": {
+    "ui": "V4.0.24.3.1",
+    "pwa": "R7.3",
+    "engine": "V4.0.23.1 LOCK"
+  },
+  "league": {
+    "managers": 10,
+    "budget_per_manager": 500,
+    "squad_size": 25,
+    "slots": {
+      "P": 3,
+      "D": 8,
+      "C": 8,
+      "A": 6
+    }
+  },
+  "registry": {
+    "players": 492,
+    "teams": 20,
+    "role_counts": {
+      "D": 176,
+      "C": 171,
+      "P": 60,
+      "A": 85
+    }
+  },
+  "engine_invariants": [
+    "budget_non_negative",
+    "max_25_players",
+    "role_caps_3_8_8_6",
+    "unique_player_owner",
+    "completion_financeable",
+    "ME_WIN_price_le_exact_max",
+    "exact_boundary_epsilon",
+    "undo_redo_roundtrip",
+    "backup_restore_roundtrip"
+  ],
+  "transaction_postconditions": [
+    "budget_updated_once",
+    "slot_updated_once",
+    "roster_updated_once",
+    "remaining_pool_updated_once",
+    "piano25_recalculated",
+    "exact_max_recalculated",
+    "scarcity_recalculated",
+    "opponent_pressure_recalculated",
+    "pivot_recalculated",
+    "top_protection_recalculated"
+  ],
+  "release_rule": "No blocking FAIL or PENDING may be presented as GOLD LOCK.",
+  "current_blockers": [
+    "PHYSICAL_IPHONE_SAFARI_ACCEPTANCE",
+    "CURRENT_ENGINE_CERTIFIED_TEMPORAL_REAL_AUCTION_REPLAY"
+  ],
+  "l9_legacy_evidence": {
+    "dataset": "L9 real auction replay",
+    "observations": 124,
+    "engine_scope": "earlier V3.8/L9 implementation, not V4.0.23.1",
+    "audit": "PASS 6/6",
+    "no_future_information": "0 divergences / 12 truncated recalculations",
+    "budget": "4617/10000",
+    "max_bid_violations": 0,
+    "pass_under_cap": 0,
+    "current_release_gate_effect": "EVIDENCE_ONLY_NOT_CLOSURE"
+  }
+}

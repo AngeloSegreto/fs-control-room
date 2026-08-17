@@ -1,26 +1,22 @@
-FS V4.0.24.3.2 — iOS LISTONE RENDER HOTFIX
+FS V4.0.24.3.3 — iOS AUCTION FIRST VIEW
 
-ROOT GITHUB: sostituire SOLO
+Sostituire nella root GitHub SOLO:
 - index.html
 - sw.js
 - version.json
 
-Motore V4.0.23.1 LOCK: INVARIATO
-Registry: INVARIATO (492)
-Prezzi/MAX/FOS: INVARIATI
+Scopo:
+- mostrare il Listone immediatamente nella prima viewport iPhone;
+- spostare i tool secondari in una barra compatta;
+- nascondere lo stato PWA BOOT dal flusso d'asta;
+- mantenere 492 giocatori e Engine V4.0.23.1 LOCK invariati.
 
-Fix:
-1. disabilita content-visibility/contain sulle righe Listone in WebKit/iOS;
-2. forza le prime 24 righe a essere dipinte subito;
-3. forza #score e .rows visibili indipendentemente dal bootstrap JS;
-4. chiude di default la guida BUY/ATTENDI/STOP per portare il Listone nella prima parte della pagina;
-5. PWA BOOT ha timeout e non resta bloccato indefinitamente.
+Dopo il deploy aprire:
+https://angelosegreto.github.io/fs-control-room/?v=20260817-3
 
-TEST DOPO DEPLOY:
-https://angelosegreto.github.io/fs-control-room/?v=20260817-2
-
-Atteso:
-- badge LISTONE 492 · RENDER iOS READY
-- prime righe Spence, Dimarco, Paz N. visibili subito
-- VALUTA cliccabile
-- filtri P/D/C/A funzionanti
+PASS visivo atteso:
+- filtri P/D/C/A;
+- ricerca;
+- barra rapida Cockpit/Rosa/Piano/Gate;
+- prima card giocatore visibile senza dover attraversare pannelli secondari;
+- VALUTA tappabile.

@@ -1,11 +1,10 @@
 {
-  "ui": "V4.0.24.3.2",
-  "pwa": "R7.3.2",
+  "build": "V4.0.24.3.3",
+  "pwa": "R7.3.3",
   "engine": "V4.0.23.1 LOCK",
-  "hotfix": "IOS_LISTONE_RENDER",
+  "purpose": "iOS auction-first viewport hotfix",
   "engine_logic_changed": false,
   "registry_changed": false,
   "prices_changed": false,
-  "players": 492,
-  "as_of": "2026-08-17"
+  "expected_registry": 492
 }

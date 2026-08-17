@@ -1,0 +1,15 @@
+{
+  "build": "V4.0.24.3.3",
+  "rows": 492,
+  "details": 492,
+  "purchase_boxes": 492,
+  "dom_ids": 671,
+  "unique_dom_ids": 671,
+  "duplicate_dom_ids": 0,
+  "hash_links": 1989,
+  "missing_hash_targets": 0,
+  "js_syntax": "PASS_22_EXECUTABLE_SCRIPTS",
+  "engine_logic_changed": false,
+  "registry_changed": false,
+  "prices_changed": false
+}

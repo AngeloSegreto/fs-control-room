@@ -1,0 +1,18 @@
+{
+  "build": "V4.0.25.0",
+  "engine": "V4.0.23.1 LOCK",
+  "registry_proxies": 492,
+  "detail_records": 492,
+  "duplicate_ids": 0,
+  "duplicate_id_values": [],
+  "runtime_page_size": 24,
+  "runtime_mode": "PAGED_DOM_24_DETAIL_ON_DEMAND",
+  "static_runtime_player_cards": 0,
+  "engine_logic_changed": false,
+  "registry_changed": false,
+  "prices_changed": false,
+  "physical_iphone_gate": "RETEST_REQUIRED",
+  "gold_lock": "BLOCKED_PENDING",
+  "runtime_recursion_hotfix": "V4.0.10 shadowMax now calls captured pre-V410 max function; intended formula unchanged",
+  "algorithm_formula_changed": false
+}

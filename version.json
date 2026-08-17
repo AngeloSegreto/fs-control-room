@@ -1,10 +1,17 @@
 {
-  "build": "V4.0.24.3.3",
-  "pwa": "R7.3.3",
+  "build": "V4.0.25.0",
+  "ui": "AUCTION_UX_RESET",
+  "pwa": "R8.1",
   "engine": "V4.0.23.1 LOCK",
-  "purpose": "iOS auction-first viewport hotfix",
+  "registry": 492,
+  "render_mode": "PAGED_DOM_24_DETAIL_ON_DEMAND",
+  "static_player_rows": 0,
+  "static_player_details": 0,
   "engine_logic_changed": false,
   "registry_changed": false,
   "prices_changed": false,
-  "expected_registry": 492
+  "physical_iphone_gate": "RETEST_REQUIRED",
+  "release_status": "RC_NOT_GOLD",
+  "runtime_recursion_hotfix": true,
+  "algorithm_formula_changed": false
 }
